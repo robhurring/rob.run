@@ -12,6 +12,16 @@ import (
 )
 
 const envBase = "REDIRECT"
+const banner = `
+                           _
+                          | |
+ ___  ___  ___   _ __ ___ | |__   _ __ _   _ _ __
+/ __|/ _ \/ _ \ | '__/ _ \| '_ \ | '__| | | | '_ \
+\__ \  __/  __/_| | | (_) | |_) || |  | |_| | | | |
+|___/\___|\___(_)_|  \___/|_.__(_)_|   \__,_|_| |_|
+																			 run rob run!
+
+`
 
 func main() {
 	err := godotenv.Load()
@@ -19,12 +29,18 @@ func main() {
 		log.Fatal("Error loading .env file")
 	}
 
-	log := logger.New(iris.Logger)
-	root := iris.Party("", log)
+	port := os.Getenv("PORT")
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
 
+	root := iris.Party("", logger.New(iris.Logger))
+	root.Get("/", func(c *iris.Context) {
+		c.Text(iris.StatusOK, banner)
+	})
 	root.Get("/vim", redirectHandler)
 
-	iris.Listen(":8080")
+	iris.Listen("0.0.0.0:" + port)
 }
 
 func redirectHandler(c *iris.Context) {

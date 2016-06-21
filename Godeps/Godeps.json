@@ -50,6 +50,11 @@
 			"Rev": "b762f72cc36c95454d10dbae6b6221ef89d53010"
 		},
 		{
+			"ImportPath": "github.com/joho/godotenv",
+			"Comment": "v1-10-g4ed1339",
+			"Rev": "4ed13390c0acd2ff4e371e64d8b97c8954138243"
+		},
+		{
 			"ImportPath": "github.com/kataras/iris",
 			"Comment": "v3.0.0-rc.2-9-g74bbc34",
 			"Rev": "74bbc34d5bb4941a975b63f0c78e80bd73e29819"
